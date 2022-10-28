@@ -1,3 +1,4 @@
+import { Types } from "mongoose";
 import { NextApiRequest } from "next";
 
 export interface UserDataType {
@@ -16,4 +17,8 @@ export interface ResMessageType {
 // register.ts
 export interface ExtendedNextApiRequestUser extends NextApiRequest {
   body: UserDataType;
+}
+// login.ts
+export interface SavedUserDataType extends UserDataType {
+  _id: Types.ObjectId;
 }
