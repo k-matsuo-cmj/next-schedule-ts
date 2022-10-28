@@ -1,4 +1,5 @@
 import { NextApiRequest, NextApiResponse } from "next";
+import auth from "../../../../utils/auth";
 import connectDB from "../../../../utils/database";
 import { ScheduleModel } from "../../../../utils/schemaModels";
 import { ResMessageType, SavedScheduleDataType } from "../../../../utils/types";
@@ -19,4 +20,4 @@ const deleteSchedule = async (
     return res.status(400).json({ message: "deleteSchedule Failure..." });
   }
 };
-export default deleteSchedule;
+export default auth(deleteSchedule);

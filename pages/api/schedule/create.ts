@@ -1,4 +1,5 @@
 import { NextApiResponse } from "next";
+import auth from "../../../utils/auth";
 import connectDB from "../../../utils/database";
 import { ScheduleModel } from "../../../utils/schemaModels";
 import {
@@ -23,4 +24,4 @@ const createSchedule = async (
     return res.status(400).json({ message: "createSchedule Failure..." });
   }
 };
-export default createSchedule;
+export default auth(createSchedule);

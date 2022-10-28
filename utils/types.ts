@@ -22,6 +22,21 @@ export interface ResMessageType {
   message: string;
   token?: string;
 }
+// auth.ts
+export interface DecodedType {
+  userId: string;
+  userName: string;
+  email: string;
+}
+export interface ExtendedNextApiRequestAuth extends NextApiRequest {
+  header: {
+    authroization: string;
+  };
+  body: {
+    userId: string;
+    userName: string;
+  };
+}
 // api/user
 // register.ts
 export interface ExtendedNextApiRequestUser extends NextApiRequest {
