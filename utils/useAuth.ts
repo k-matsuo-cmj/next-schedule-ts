@@ -4,7 +4,7 @@ import jwt from "jsonwebtoken";
 import { DecodedType } from "./types";
 import { secretKey } from "./secretKey";
 
-const useAuth = () => {
+const useAuth = (): DecodedType => {
   const [loginUser, setLoginUser] = useState({});
   const router = useRouter();
 

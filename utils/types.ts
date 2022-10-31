@@ -24,9 +24,9 @@ export interface ResMessageType {
 }
 // auth.ts
 export interface DecodedType {
-  userId: string;
-  userName: string;
-  email: string;
+  userId?: string;
+  userName?: string;
+  email?: string;
 }
 export interface ExtendedNextApiRequestAuth extends NextApiRequest {
   header: {
@@ -61,4 +61,19 @@ export interface ResSchedulesType extends ResMessageType {
 // [id].ts
 export interface ResScheduleType extends ResMessageType {
   schedule?: SavedScheduleDataType;
+}
+
+// frontend
+// [id].ts
+export interface ReadScheduleType {
+  schedule: {
+    _id: string;
+    title: string;
+    startAt: string;
+    endAt: string;
+    place: string;
+    description: string;
+    userId: string;
+    userName: string;
+  };
 }
