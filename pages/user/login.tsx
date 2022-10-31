@@ -1,3 +1,4 @@
+import { Button, Container, FormControl, TextField } from "@mui/material";
 import { NextPage } from "next";
 import { useRouter } from "next/router";
 import React, { useState } from "react";
@@ -29,22 +30,30 @@ const LoginPage: NextPage = () => {
     }
   };
   return (
-    <>
+    <Container maxWidth="sm" sx={{ height: "80vh" }}>
       <h1>ログインページ</h1>
       <form onSubmit={handleSubmit}>
-        <input
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          name="email"
-        />
-        <input
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          name="password"
-        />
-        <button type="submit">ログイン</button>
+        <FormControl fullWidth>
+          <TextField
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            name="email"
+            label="Eメール"
+            sx={{ mb: 2 }}
+          />
+          <TextField
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            name="password"
+            label="パスワード"
+            sx={{ mb: 2 }}
+          />
+          <Button type="submit" variant="contained" size="large">
+            ログイン
+          </Button>
+        </FormControl>
       </form>
-    </>
+    </Container>
   );
 };
 export default LoginPage;
