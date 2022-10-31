@@ -77,3 +77,15 @@ export interface ReadScheduleType {
     userName: string;
   };
 }
+export interface ReadSchedulesType {
+  schedules: {
+    _id: string;
+    title: string;
+    startAt: string;
+    endAt: string;
+    place: string;
+    description: string;
+    userId: string;
+    userName: string;
+  }[];
+}
