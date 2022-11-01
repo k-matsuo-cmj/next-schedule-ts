@@ -1,4 +1,5 @@
 import { Card, CardContent, Grid, Typography } from "@mui/material";
+import { format } from "date-fns";
 import { NextPage } from "next";
 import Link from "next/link";
 import { useEffect, useState } from "react";
@@ -18,12 +19,6 @@ const ScheduleList: NextPage = () => {
     };
     readAll();
   }, []);
-  const getStartEnd = (startAt: Date, endAt: Date): string => {
-    const startDate = new Date(startAt);
-    const endDate = new Date(endAt);
-    return `${startDate.getFullYear()}/${startDate.getMonth()}/${startDate.getDate()} ${startDate.getHours()}
-    : ${startDate.getMinutes()} - ${endDate.getHours()} : ${endDate.getMinutes()}`;
-  };
   return (
     <Grid container rowSpacing={1}>
       {schedules.map((schedule) => (
@@ -34,9 +29,13 @@ const ScheduleList: NextPage = () => {
                 <Typography gutterBottom variant="h6" component="div">
                   {schedule.title}
                 </Typography>
-                <p>{getStartEnd(schedule.startAt, schedule.endAt)}</p>
                 <p>
-                  {schedule.place} - {schedule.userName}
+                  {format(new Date(schedule.startAt), "yyyy/MM/dd HH:mm")}
+                  {" - "}
+                  {format(new Date(schedule.endAt), "HH:mm")}
+                </p>
+                <p>
+                  {schedule.place} {schedule.userName}
                 </p>
               </CardContent>
             </Card>

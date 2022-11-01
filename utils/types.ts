@@ -81,8 +81,8 @@ export interface ReadSchedulesType {
   schedules: {
     _id: string;
     title: string;
-    startAt: string;
-    endAt: string;
+    startAt: Date;
+    endAt: Date;
     place: string;
     description: string;
     userId: string;

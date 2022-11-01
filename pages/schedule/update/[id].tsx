@@ -6,17 +6,15 @@ import {
   TextField,
   Typography,
 } from "@mui/material";
+import { format } from "date-fns";
 import { GetServerSideProps, NextPage } from "next";
 import { useRouter } from "next/router";
 import React, { useState } from "react";
 import { ReadScheduleType } from "../../../utils/types";
 import useAuth from "../../../utils/useAuth";
 
-const formatDate = (d: Date): string => {
-  const str = new Date(d).toISOString().substring(0, 16);
-  console.log(str);
-  return str;
-};
+const formatDate = (d: Date): string =>
+  format(new Date(d), "yyyy-MM-dd'T'HH:mm");
 const UpdateSchedule: NextPage<ReadScheduleType> = ({ schedule }) => {
   const [title, setTitle] = useState(schedule.title);
   const [place, setPlace] = useState(schedule.place);

@@ -1,4 +1,5 @@
 import { Box, Button, Container } from "@mui/material";
+import { format } from "date-fns";
 import { GetServerSideProps, NextPage } from "next";
 import React from "react";
 import { ReadScheduleType } from "../../../utils/types";
@@ -31,8 +32,10 @@ const DeleteSchedule: NextPage<ReadScheduleType> = ({ schedule }) => {
       <Container maxWidth="sm" sx={{ height: "70vh", my: 4 }}>
         <Box component="form" onSubmit={handleSubmit}>
           <h1>{schedule.title}</h1>
-          <p>{schedule.startAt}</p>
-          <p>{schedule.endAt}</p>
+          <p>
+            {format(new Date(schedule.startAt), "yyyy/MM/dd HH:mm")} {" - "}
+            {format(new Date(schedule.endAt), "HH:mm")}
+          </p>
           <p>{schedule.place}</p>
           <p>{schedule.userName}</p>
           <p>{schedule.description}</p>
