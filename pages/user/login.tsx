@@ -1,4 +1,11 @@
-import { Button, Container, FormControl, TextField } from "@mui/material";
+import {
+  Box,
+  Button,
+  Container,
+  FormControl,
+  TextField,
+  Typography,
+} from "@mui/material";
 import { NextPage } from "next";
 import { useRouter } from "next/router";
 import React, { useState } from "react";
@@ -30,9 +37,13 @@ const LoginPage: NextPage = () => {
     }
   };
   return (
-    <Container maxWidth="sm" sx={{ height: "80vh" }}>
-      <h1>ログインページ</h1>
-      <form onSubmit={handleSubmit}>
+    <Container maxWidth="sm" sx={{ height: "70vh", my: 4 }}>
+      <Typography variant="h4">ログイン</Typography>
+      <Box
+        component="form"
+        sx={{ "& .MuiTextField-root": { m: 1 } }}
+        onSubmit={handleSubmit}
+      >
         <FormControl fullWidth>
           <TextField
             value={email}
@@ -52,7 +63,7 @@ const LoginPage: NextPage = () => {
             ログイン
           </Button>
         </FormControl>
-      </form>
+      </Box>
     </Container>
   );
 };
