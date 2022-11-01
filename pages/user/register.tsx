@@ -35,7 +35,7 @@ const UserRegistPage: NextPage = () => {
     }
   };
   return (
-    <Container maxWidth="sm" sx={{ height: "80vh", my: 4 }}>
+    <Container maxWidth="sm" sx={{ height: "70vh", my: 4 }}>
       <Typography variant="h4">ユーザ登録</Typography>
       <Box
         component="form"

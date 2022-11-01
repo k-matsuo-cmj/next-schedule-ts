@@ -1,3 +1,4 @@
+import { Box, Button, Container } from "@mui/material";
 import { GetServerSideProps, NextPage } from "next";
 import React from "react";
 import { ReadScheduleType } from "../../../utils/types";
@@ -27,17 +28,19 @@ const DeleteSchedule: NextPage<ReadScheduleType> = ({ schedule }) => {
   const loginUser = useAuth();
   if (loginUser.userId === schedule.userId) {
     return (
-      <>
-        <form onSubmit={handleSubmit}>
+      <Container maxWidth="sm" sx={{ height: "70vh", my: 4 }}>
+        <Box component="form" onSubmit={handleSubmit}>
           <h1>{schedule.title}</h1>
           <p>{schedule.startAt}</p>
           <p>{schedule.endAt}</p>
           <p>{schedule.place}</p>
           <p>{schedule.userName}</p>
           <p>{schedule.description}</p>
-          <button>削除</button>
-        </form>
-      </>
+          <Button type="submit" variant="contained" size="large">
+            削除
+          </Button>
+        </Box>
+      </Container>
     );
   } else {
     return <h1>権限がありません</h1>;
