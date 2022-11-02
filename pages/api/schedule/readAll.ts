@@ -9,7 +9,10 @@ const getSchedules = async (
 ) => {
   try {
     await connectDB();
-    const schedules = await ScheduleModel.find();
+    const schedules = await ScheduleModel.find().sort({
+      startAt: "asc",
+      endAt: "asc",
+    });
     return res
       .status(200)
       .json({ message: "getSchedules Success", schedules: schedules });
