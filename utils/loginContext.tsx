@@ -12,7 +12,10 @@ type loginContextType = {
   loginUser: DecodedType;
   setLoginUser: Dispatch<SetStateAction<DecodedType>>;
 };
-const LoginContext = createContext<loginContextType | undefined>(undefined);
+const LoginContext = createContext<loginContextType>({
+  loginUser: {},
+  setLoginUser: () => {}
+});
 
 export const useLoginContext = () => useContext(LoginContext);
 

@@ -9,7 +9,6 @@ import { useLoginContext } from "../utils/loginContext";
 
 const Header: NextPage = () => {
   const { loginUser, setLoginUser } = useLoginContext();
-  // const [loginUser, setLoginUser] = useState<DecodedType | null>(null);
   useEffect(() => {
     const token = localStorage.getItem("token");
     if (token) {
