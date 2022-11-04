@@ -18,6 +18,7 @@ import { NextPage } from "next";
 import Link from "next/link";
 import React from "react";
 import { SavedScheduleDataType } from "../../utils/types";
+import { useLoginContext } from "../loginContext";
 
 type MonthProps = {
   current: Date;
@@ -69,15 +70,17 @@ type DayProps = {
   schedules: SavedScheduleDataType[];
 };
 const Day: NextPage<DayProps> = ({ date, schedules }) => {
+  const { loginUser } = useLoginContext();
   const mySchedules = [];
+  
   for (const s of schedules) {
     mySchedules.push(
-      <Link href={`/schedule/${s._id}`}>
+      <Link href={`/schedule/${s._id}`} key={String(s._id)}>
         <ScheduleTooltip title={scheduleTooltipContext(s)}>
           <Box
             sx={{
               height: "20px",
-              background: "#06f",
+              background: scheduleBackground(s.userId === loginUser.userId),
               color: "white",
               overflow: "hidden",
             }}
@@ -100,6 +103,7 @@ const Day: NextPage<DayProps> = ({ date, schedules }) => {
     </Card>
   );
 };
+const scheduleBackground = (isOwner:boolean) =>  isOwner ? "blue" : "darkgray";
 
 const ScheduleTooltip = styled(({ className, ...props }: TooltipProps) => (
   <Tooltip {...props} classes={{ popper: className }} />
