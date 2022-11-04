@@ -1,8 +1,11 @@
-import { AppBar, Box, Button, Toolbar, Typography } from "@mui/material";
+import LoginIcon from "@mui/icons-material/Login";
+import LogoutIcon from "@mui/icons-material/Logout";
+import QueueIcon from "@mui/icons-material/Queue";
+import { AppBar, Box, IconButton, Toolbar, Typography } from "@mui/material";
 import jwt from "jsonwebtoken";
 import { NextPage } from "next";
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { secretKey } from "../utils/secretKey";
 import { DecodedType } from "../utils/types";
 import { useLoginContext } from "./loginContext";
@@ -31,21 +34,34 @@ const Header: NextPage = () => {
           <Link href="/">
             <Typography variant="h6">Next Schedule App</Typography>
           </Link>
-          <Box>
-            <Link href="/schedule/create">
-              <Button sx={{ color: "#fff", mx: 2 }}>TEST</Button>
-            </Link>
-          </Box>
+          <Box sx={{ mr: "auto" }} />
           {!loginUser.userId && (
             <Link href="/user/login">
-              <Typography>LOGIN</Typography>
+              <IconButton color="inherit" size="small" sx={{ mx: 4 }}>
+                <LoginIcon /> Login
+              </IconButton>
             </Link>
           )}
-          {loginUser.userId && <Typography>HELLO {loginUser.userName}</Typography>}
           {loginUser.userId && (
-            <Button sx={{ color: "#fff", mx: 2 }} onClick={logout}>
-              LOGOUT
-            </Button>
+            <div>
+              <Typography component="span" sx={{ mx: 4 }}>
+                Hello {loginUser.userName} さん
+              </Typography>
+
+              <Link href="/schedule/create">
+                <IconButton color="inherit" size="small" sx={{ mx: 2 }}>
+                  <QueueIcon /> New
+                </IconButton>
+              </Link>
+              <IconButton
+                color="inherit"
+                size="small"
+                sx={{ mx: 2 }}
+                onClick={logout}
+              >
+                <LogoutIcon /> Logout
+              </IconButton>
+            </div>
           )}
         </Toolbar>
       </AppBar>
