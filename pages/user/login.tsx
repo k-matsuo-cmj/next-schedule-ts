@@ -9,10 +9,15 @@ import {
 import { NextPage } from "next";
 import { useRouter } from "next/router";
 import React, { useState } from "react";
+import { useLoginContext } from "../../utils/loginContext";
+import jwt from "jsonwebtoken";
+import { DecodedType } from "../../utils/types";
+import { secretKey } from "../../utils/secretKey";
 
 const LoginPage: NextPage = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const { setLoginUser } = useLoginContext();
   const router = useRouter();
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -30,6 +35,10 @@ const LoginPage: NextPage = () => {
       });
       const jsonData = await response.json();
       localStorage.setItem("token", jsonData.token);
+
+      const decoded = jwt.verify(jsonData.token, secretKey) as DecodedType;
+      setLoginUser({ ...decoded });
+
       alert("Login Success");
       router.push("/");
     } catch (err) {

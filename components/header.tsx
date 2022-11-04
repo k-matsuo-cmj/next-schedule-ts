@@ -5,9 +5,11 @@ import { useEffect, useState } from "react";
 import jwt from "jsonwebtoken";
 import { DecodedType } from "../utils/types";
 import { secretKey } from "../utils/secretKey";
+import { useLoginContext } from "../utils/loginContext";
 
 const Header: NextPage = () => {
-  const [loginUser, setLoginUser] = useState<DecodedType | null>(null);
+  const { loginUser, setLoginUser } = useLoginContext();
+  // const [loginUser, setLoginUser] = useState<DecodedType | null>(null);
   useEffect(() => {
     const token = localStorage.getItem("token");
     if (token) {
@@ -20,7 +22,7 @@ const Header: NextPage = () => {
 
   const logout = () => {
     localStorage.removeItem("token");
-    setLoginUser(null);
+    setLoginUser({});
   };
 
   return (
@@ -35,13 +37,13 @@ const Header: NextPage = () => {
               <Button sx={{ color: "#fff", mx: 2 }}>TEST</Button>
             </Link>
           </Box>
-          {!loginUser && (
+          {!loginUser.userId && (
             <Link href="/user/login">
               <Typography>LOGIN</Typography>
             </Link>
           )}
-          {loginUser && <Typography>HELLO {loginUser.userName}</Typography>}
-          {loginUser && (
+          {loginUser.userId && <Typography>HELLO {loginUser.userName}</Typography>}
+          {loginUser.userId && (
             <Button sx={{ color: "#fff", mx: 2 }} onClick={logout}>
               LOGOUT
             </Button>
