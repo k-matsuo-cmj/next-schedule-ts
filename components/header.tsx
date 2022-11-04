@@ -1,11 +1,11 @@
 import { AppBar, Box, Button, Toolbar, Typography } from "@mui/material";
+import jwt from "jsonwebtoken";
 import { NextPage } from "next";
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import jwt from "jsonwebtoken";
-import { DecodedType } from "../utils/types";
 import { secretKey } from "../utils/secretKey";
-import { useLoginContext } from "../utils/loginContext";
+import { DecodedType } from "../utils/types";
+import { useLoginContext } from "./loginContext";
 
 const Header: NextPage = () => {
   const { loginUser, setLoginUser } = useLoginContext();
@@ -17,7 +17,7 @@ const Header: NextPage = () => {
         setLoginUser({ ...decoded });
       } catch (err) {}
     }
-  }, []);
+  }, [setLoginUser]);
 
   const logout = () => {
     localStorage.removeItem("token");

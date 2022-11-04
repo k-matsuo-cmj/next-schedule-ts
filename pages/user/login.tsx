@@ -4,15 +4,15 @@ import {
   Container,
   FormControl,
   TextField,
-  Typography,
+  Typography
 } from "@mui/material";
+import jwt from "jsonwebtoken";
 import { NextPage } from "next";
 import { useRouter } from "next/router";
 import React, { useState } from "react";
-import { useLoginContext } from "../../utils/loginContext";
-import jwt from "jsonwebtoken";
-import { DecodedType } from "../../utils/types";
+import { useLoginContext } from "../../components/loginContext";
 import { secretKey } from "../../utils/secretKey";
+import { DecodedType } from "../../utils/types";
 
 const LoginPage: NextPage = () => {
   const [email, setEmail] = useState("");

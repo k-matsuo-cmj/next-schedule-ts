@@ -6,7 +6,7 @@ import {
   useContext,
   useState,
 } from "react";
-import { DecodedType } from "./types";
+import { DecodedType } from "../utils/types";
 
 type loginContextType = {
   loginUser: DecodedType;

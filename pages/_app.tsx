@@ -3,7 +3,7 @@ import type { AppProps } from "next/app";
 import Head from "next/head";
 import Header from "../components/header";
 import Footer from "../components/footer";
-import { LoginProvider } from "../utils/loginContext";
+import { LoginProvider } from "../components/loginContext";
 
 export default function App({ Component, pageProps }: AppProps) {
   return (
